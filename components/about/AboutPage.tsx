@@ -71,13 +71,15 @@ function ProfileHero() {
               {link.label}
             </a>
           ))}
-          <a
-            href={`mailto:${profile.email}`}
-            className="inline-flex h-9 items-center gap-2 rounded-md border border-gray-200 px-3 text-sm font-medium text-gray-700 transition hover:border-gray-300 hover:bg-gray-50 dark:border-gray-800 dark:text-gray-200 dark:hover:border-gray-700 dark:hover:bg-gray-900"
-          >
-            <Mail className="size-4" aria-hidden="true" />
-            Email
-          </a>
+          {profile.email ? (
+            <a
+              href={`mailto:${profile.email}`}
+              className="inline-flex h-9 items-center gap-2 rounded-md border border-gray-200 px-3 text-sm font-medium text-gray-700 transition hover:border-gray-300 hover:bg-gray-50 dark:border-gray-800 dark:text-gray-200 dark:hover:border-gray-700 dark:hover:bg-gray-900"
+            >
+              <Mail className="size-4" aria-hidden="true" />
+              Email
+            </a>
+          ) : null}
         </div>
       </div>
       <div className="justify-self-start md:justify-self-end">

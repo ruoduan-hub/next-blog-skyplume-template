@@ -1,7 +1,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Skyplume Blog',
-  author: 'Skyplume Author',
+  author: 'Chad',
   headerTitle: 'Skyplume',
   description:
     'A clean, content-first Next.js blog template built with Contentlayer, Tailwind CSS, and MDX.',
@@ -9,7 +9,7 @@ const siteMetadata = {
   theme: 'system',
   siteUrl: 'https://www.0x1ai.com/',
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/skyplume-card.svg`,
-  email: 'hello@example.com',
+  email: '',
   github: 'https://github.com/ruoduan-hub',
   locale: 'en-US',
   stickyNav: false,

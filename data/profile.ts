@@ -9,18 +9,18 @@ export type SiteStackNote = {
 }
 
 export const profile = {
-  name: 'Skyplume Author',
-  handle: 'your-username',
-  title: 'Builder, writer, and engineer',
-  email: 'hello@example.com',
-  location: 'Earth',
+  name: 'Chad',
+  handle: 'ruoduan-hub',
+  title: 'Frontend developer, writer, and maker',
+  email: '',
+  location: 'China',
   avatar: '/static/images/avatar.svg',
   intro:
-    'A personal publishing space for technical notes, project write-ups, and long-form essays.',
-  quote: 'Write things down. Make them useful. Keep the system simple.',
+    'I am Chad, the writer behind 0x1ai.com. I focus on frontend development, product thinking, AI tools, and long-term personal systems, and I use this blog to record technical notes, project write-ups, and practical experiments.',
+  quote: 'Build useful things, write them down, and keep improving the system.',
   socialLinks: [
-    { label: 'GitHub', href: 'https://github.com/your-username' },
-    { label: 'Website', href: 'https://example.com' },
+    { label: 'GitHub', href: 'https://github.com/ruoduan-hub' },
+    { label: 'Blog', href: 'https://www.0x1ai.com/' },
   ] satisfies SocialLink[],
   interests: ['Writing', 'Engineering', 'Open Source', 'Design Systems'],
   skills: {
