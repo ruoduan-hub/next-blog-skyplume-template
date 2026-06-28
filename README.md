@@ -2,9 +2,20 @@
 
 > A refined, content-first Next.js blog template for personal publishing, engineering notes, project journals, and long-form MDX writing.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog)
+[![GitHub stars](https://img.shields.io/github/stars/ruoduan-hub/next-blog-skyplume-template?style=social)](https://github.com/ruoduan-hub/next-blog-skyplume-template/stargazers)
+[![License: MIT](https://img.shields.io/badge/license-MIT-black.svg)](./LICENSE)
+
 [简体中文](./README.zh-CN.md)
 
 Skyplume is an open-source blog template extracted from [Ruoduan](https://www.0x1ai.com/)'s personal blog at [0x1ai.com](https://www.0x1ai.com/). It keeps the parts that matter for a serious personal site: fast pages, clean typography, strong SEO defaults, MDX authoring, RSS, sitemap, local search, tags, dark mode, animated details, and an architecture that is easy to customize.
+
+## Links
+
+- Production reference: [0x1ai.com](https://www.0x1ai.com/)
+- GitHub repository: [ruoduan-hub/next-blog-skyplume-template](https://github.com/ruoduan-hub/next-blog-skyplume-template)
+- One-click deploy: [Deploy Skyplume to Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog)
+- Use as a GitHub template: [Generate a new repository](https://github.com/ruoduan-hub/next-blog-skyplume-template/generate)
 
 ## Highlights
 
@@ -97,6 +108,12 @@ yarn dev
 
 Open <http://localhost:3000>.
 
+## Deploy to Vercel
+
+The fastest path is the one-click deploy button at the top of this README. It clones this repository into your Git provider, creates a Vercel project, and keeps the app deployable with the default configuration.
+
+Comments are optional. The template boots without newsletter, analytics, or comment credentials. To enable Giscus comments, copy `.env.example` to `.env.local` and fill in the required values.
+
 ## Configure Your Site
 
 Edit these files first:
@@ -172,6 +189,27 @@ public/static/       Images, favicons, and post assets
 scripts/             RSS and post-build scripts
 css/                 Tailwind, syntax highlighting, animations
 ```
+
+## Suggested GitHub Topics
+
+If you fork or publish a derivative template, these topics help people discover it:
+
+```text
+nextjs nextjs-template blog-template mdx contentlayer tailwindcss typescript vercel static-site personal-website
+```
+
+## Recommend Skyplume to Vercel
+
+Skyplume is ready to be shared with the Vercel community as a polished blog template:
+
+- Category fit: Blog, Next.js, Tailwind CSS, MDX, static content
+- Repository: <https://github.com/ruoduan-hub/next-blog-skyplume-template>
+- Production reference: <https://www.0x1ai.com/>
+- One-click deploy: <https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog>
+
+Suggested short pitch:
+
+> Skyplume is a refined Next.js 15 blog template extracted from a production personal site. It ships with MDX publishing, Contentlayer, Tailwind CSS 4, local search, RSS, sitemap, JSON-LD, Open Graph defaults, dark mode, Giscus comments, static export support, security headers, and a baseline Lighthouse 100/100/100 setup for Performance, Best Practices, and SEO.
 
 ## Credits
 

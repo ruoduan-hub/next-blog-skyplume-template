@@ -1,0 +1,24 @@
+# Changelog
+
+All notable changes to Skyplume will be documented in this file.
+
+This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) style sections and uses semantic versioning where practical.
+
+## [Unreleased]
+
+### Added
+
+- Open-source growth materials in README, including Vercel deploy links and recommendation copy.
+- Contributor guide.
+- Pull request template.
+
+## [1.0.0] - 2026-06-28
+
+### Added
+
+- Initial open-source release of Skyplume Blog Template.
+- Next.js 15 App Router, React 19, TypeScript, Tailwind CSS 4, and Contentlayer setup.
+- MDX publishing flow with front matter, reading time, table of contents, code highlighting, math, citations, alerts, images, iframes, and custom components.
+- SEO defaults, Open Graph metadata, Twitter cards, canonical URLs, sitemap, robots, RSS, and BlogPosting JSON-LD.
+- Local search index powered by `pliny`.
+- Tags, pagination, author profiles, projects page, about page, optional Giscus comments, dark mode, motion details, security headers, and static export support.

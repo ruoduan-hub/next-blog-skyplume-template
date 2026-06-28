@@ -2,9 +2,20 @@
 
 > 一个精致、内容优先的 Next.js 博客模板，适合个人发布、工程笔记、项目记录和长篇 MDX 写作。
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog)
+[![GitHub stars](https://img.shields.io/github/stars/ruoduan-hub/next-blog-skyplume-template?style=social)](https://github.com/ruoduan-hub/next-blog-skyplume-template/stargazers)
+[![License: MIT](https://img.shields.io/badge/license-MIT-black.svg)](./LICENSE)
+
 [English](./README.md)
 
 Skyplume 是一个开源博客模板，源于 [Ruoduan](https://www.0x1ai.com/) 的个人博客 [0x1ai.com](https://www.0x1ai.com/) 的真实生产体验。它保留了一个认真维护的个人站点真正需要的部分：快速加载、清晰排版、良好的 SEO 默认配置、MDX 写作、RSS、站点地图、本地搜索、标签、暗色模式、细腻动画，以及易于二次定制的项目结构。
+
+## 链接
+
+- 生产参考站点：[0x1ai.com](https://www.0x1ai.com/)
+- GitHub 仓库：[ruoduan-hub/next-blog-skyplume-template](https://github.com/ruoduan-hub/next-blog-skyplume-template)
+- 一键部署：[Deploy Skyplume to Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog)
+- 使用为 GitHub 模板：[Generate a new repository](https://github.com/ruoduan-hub/next-blog-skyplume-template/generate)
 
 ## 亮点
 
@@ -97,6 +108,12 @@ yarn dev
 
 打开 <http://localhost:3000>。
 
+## 部署到 Vercel
+
+最快方式是使用 README 顶部的一键部署按钮。它会把本仓库克隆到你的 Git 服务中，创建 Vercel 项目，并使用默认配置完成部署。
+
+评论是可选能力。模板在没有 newsletter、analytics 或评论密钥的情况下也可以启动。如需启用 Giscus 评论，复制 `.env.example` 为 `.env.local` 并填写对应配置。
+
 ## 配置站点
 
 建议优先修改这些文件：
@@ -172,6 +189,27 @@ public/static/       图片、favicon 和文章资源
 scripts/             RSS 和构建后脚本
 css/                 Tailwind、语法高亮、动画
 ```
+
+## 推荐 GitHub Topics
+
+如果你 fork 或发布基于 Skyplume 的衍生模板，可以使用这些 topics 提升可发现性：
+
+```text
+nextjs nextjs-template blog-template mdx contentlayer tailwindcss typescript vercel static-site personal-website
+```
+
+## 推荐给 Vercel
+
+Skyplume 适合提交到 Vercel 社区作为精致的博客模板展示：
+
+- 分类匹配：Blog、Next.js、Tailwind CSS、MDX、static content
+- 仓库：<https://github.com/ruoduan-hub/next-blog-skyplume-template>
+- 生产参考站点：<https://www.0x1ai.com/>
+- 一键部署：<https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog>
+
+推荐短文案：
+
+> Skyplume 是一个源于真实生产个人站点的精致 Next.js 15 博客模板。它内置 MDX 写作、Contentlayer、Tailwind CSS 4、本地搜索、RSS、sitemap、JSON-LD、Open Graph 默认配置、暗色模式、Giscus 评论、静态导出、安全 headers，并针对 Lighthouse Performance、Best Practices、SEO 三项 100 分做了基础调优。
 
 ## 致谢
 
