@@ -1,0 +1,534 @@
+@import './animations.css';
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@plugin "@tailwindcss/forms";
+@plugin '@tailwindcss/typography';
+@source '../node_modules/pliny';
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Core theme configuration */
+@theme {
+  /* Font families */
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Colors */
+  /* Mineral Teal: calm lab-grade accent with teal-tinted neutrals for long-form reading. */
+  --color-primary-50: oklch(0.972 0.012 180);
+  --color-primary-100: oklch(0.94 0.026 180);
+  --color-primary-200: oklch(0.89 0.052 180);
+  --color-primary-300: oklch(0.81 0.088 180);
+  --color-primary-400: oklch(0.69 0.115 179);
+  --color-primary-500: oklch(0.56 0.12 178);
+  --color-primary-600: oklch(0.49 0.112 178);
+  --color-primary-700: oklch(0.42 0.095 180);
+  --color-primary-800: oklch(0.35 0.075 182);
+  --color-primary-900: oklch(0.29 0.058 184);
+  --color-primary-950: oklch(0.22 0.045 186);
+
+  --color-gray-50: oklch(0.985 0.004 190);
+  --color-gray-100: oklch(0.965 0.006 190);
+  --color-gray-200: oklch(0.925 0.008 190);
+  --color-gray-300: oklch(0.865 0.01 190);
+  --color-gray-400: oklch(0.695 0.014 190);
+  --color-gray-500: oklch(0.545 0.016 190);
+  --color-gray-600: oklch(0.44 0.016 190);
+  --color-gray-700: oklch(0.365 0.016 190);
+  --color-gray-800: oklch(0.285 0.015 190);
+  --color-gray-900: oklch(0.205 0.014 190);
+  --color-gray-950: oklch(0.13 0.012 190);
+
+  /* Line heights */
+  --line-height-11: 2.75rem;
+  --line-height-12: 3rem;
+  --line-height-13: 3.25rem;
+  --line-height-14: 3.5rem;
+
+  /* Z-index values */
+  --z-60: 60;
+  --z-70: 70;
+  --z-80: 80;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  a,
+  button {
+    outline-color: var(--color-primary-500);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid;
+    border-radius: var(--radius-sm);
+    outline-color: var(--color-primary-500);
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/*
+ * ═══════════════════════════════════════════════════════════════
+ * PROSE OVERRIDES — unlayered (highest cascade priority).
+ * Must stay outside @layer to reliably override the
+ * @tailwindcss/typography plugin's layered defaults.
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/* ── Light mode ── */
+.prose {
+  --tw-prose-body: oklch(0.3 0.005 260);
+  --tw-prose-bold: oklch(0.22 0.005 260);
+  --tw-prose-headings: oklch(0.18 0.005 260);
+  --tw-prose-lead: oklch(0.48 0.005 260);
+  --tw-prose-links: var(--color-primary-500);
+  --tw-prose-counters: oklch(0.5 0.005 260);
+  --tw-prose-bullets: oklch(0.6 0.008 260);
+  --tw-prose-hr: oklch(0.88 0.005 260);
+  --tw-prose-quotes: oklch(0.38 0.005 260);
+  --tw-prose-quote-borders: oklch(0.85 0.008 260);
+  --tw-prose-captions: oklch(0.5 0.005 260);
+  --tw-prose-code: var(--color-primary-700);
+  --tw-prose-pre-code: oklch(0.3 0.005 260);
+  --tw-prose-pre-bg: oklch(0.97 0.002 260);
+  --tw-prose-th-borders: oklch(0.85 0.005 260);
+  --tw-prose-td-borders: oklch(0.9 0.005 260);
+
+  font-size: 1.125rem;
+  line-height: 1.75;
+
+  & h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  & h2 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  & h3 {
+    font-size: 1.375rem;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  & h4 {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  & h5 {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  & h6 {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  & a {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 400;
+    transition: color 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    &:hover {
+      color: var(--color-primary-600);
+    }
+  }
+
+  & strong {
+    color: oklch(0.22 0.005 260);
+    font-weight: 600;
+  }
+
+  & blockquote {
+    border-left-color: oklch(0.88 0.008 260);
+    border-left-width: 3px;
+    font-style: normal;
+    color: oklch(0.4 0.005 260);
+    background: transparent;
+  }
+
+  & :where(code):not(pre code) {
+    color: var(--color-primary-700);
+    background: oklch(0.96 0.012 180 / 0.65);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-weight: 500;
+  }
+
+  & hr {
+    border-color: oklch(0.88 0.005 260);
+    margin: 2.5rem 0;
+  }
+
+  & pre {
+    background-color: oklch(0.97 0.002 260);
+    border: 1px solid oklch(0.88 0.005 260);
+    border-radius: 0.625rem;
+  }
+}
+
+/*
+ * ── Dark mode ──
+ *
+ * We target .dark .prose (NOT .prose-invert) to completely
+ * bypass the @tailwindcss/typography plugin's control of
+ * the .prose-invert class at the compiler level.
+ *
+ * The plugin may intercept, rewrite, or ignore .prose-invert
+ * rules because it "owns" that class. Using .dark .prose with
+ * explicit !important on every property is the only reliable
+ * way to force overrides in Tailwind v4.
+ *
+ * Layouts already have "dark:prose-invert" on the element,
+ * but targeting .dark .prose is orthogonal — both .prose and
+ * .dark are present on <html>, so .dark .prose always matches.
+ */
+.dark .prose {
+  /*
+   * ── Body / base text ──
+   * Pure neutral off-white. No chroma tint — clean and bright.
+   */
+  color: oklch(0.88 0 0) !important;
+
+  /*
+   * ── Headings h1–h6 ──
+   * All headings share the same bright white.
+   * Size/weight differentiate hierarchy, not color.
+   */
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    color: oklch(0.95 0 0) !important;
+  }
+
+  /*
+   * ── Links ──
+   * Mineral teal accent. The primary palette's 400 step pops on dark bg.
+   */
+  & a {
+    color: var(--color-primary-400) !important;
+    font-weight: 400;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    &:hover {
+      color: var(--color-primary-300) !important;
+    }
+  }
+
+  /*
+   * ── Bold / strong ──
+   * Slightly brighter than body for scannable emphasis.
+   */
+  & strong,
+  & b {
+    color: oklch(0.93 0 0) !important;
+    font-weight: 600;
+  }
+
+  /*
+   * ── Blockquote ──
+   * No background. Left border for separation.
+   * Text slightly muted from body but still bright enough to read.
+   */
+  & blockquote {
+    background: transparent !important;
+    border-left: 3px solid oklch(0.35 0 0) !important;
+    color: oklch(0.82 0 0) !important;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /*
+   * ── Inline code ──
+   * Warm amber text on translucent dark background.
+   * Soft contrast — not "white on black".
+   */
+  & :where(code):not(pre code) {
+    color: var(--color-primary-200) !important;
+    background: oklch(0.24 0.025 184 / 0.42) !important;
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-weight: 500;
+    border: 1px solid oklch(0.42 0.06 180 / 0.3);
+  }
+
+  /*
+   * ── Horizontal rule ──
+   */
+  & hr {
+    border-color: oklch(0.25 0 0) !important;
+    margin: 2.5rem 0;
+  }
+
+  /*
+   * ── Code blocks (multi-line) ──
+   * Deep warm-black surface with border for definition.
+   */
+  & pre {
+    background-color: oklch(0.17 0.003 260) !important;
+    color: oklch(0.9 0 0) !important;
+    border: 1px solid oklch(0.25 0 0) !important;
+    border-radius: 0.625rem;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+
+  & pre code {
+    background-color: transparent !important;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  /*
+   * ── Tables ──
+   */
+  & thead {
+    border-bottom-color: oklch(0.25 0 0) !important;
+  }
+  & tbody tr {
+    border-bottom-color: oklch(0.2 0 0) !important;
+  }
+
+  /*
+   * ── Figcaption / image captions ──
+   */
+  & figcaption {
+    color: oklch(0.55 0 0) !important;
+  }
+
+  /*
+   * ── List markers ──
+   */
+  & li::marker {
+    color: oklch(0.5 0 0) !important;
+  }
+
+  /*
+   * ── Lead paragraph ──
+   */
+  & .lead {
+    color: oklch(0.6 0 0) !important;
+  }
+}
+
+.task-list-item::before {
+  @apply hidden;
+}
+
+.task-list-item {
+  @apply list-none;
+}
+
+.footnotes {
+  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
+}
+
+.data-footnote-backref {
+  @apply no-underline;
+}
+
+.csl-entry {
+  @apply my-5;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
+}
+
+.katex-display {
+  overflow: auto hidden;
+}
+
+.content-header-link {
+  opacity: 0;
+  margin-left: -24px;
+  padding-right: 4px;
+}
+
+.content-header:hover .content-header-link,
+.content-header-link:hover {
+  opacity: 1;
+}
+
+.linkicon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@theme inline {
+  --font-heading: var(--font-space-grotesk);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: var(--color-primary-600);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: var(--color-gray-100);
+  --secondary-foreground: var(--color-gray-900);
+  --muted: var(--color-gray-100);
+  --muted-foreground: var(--color-gray-500);
+  --accent: var(--color-primary-50);
+  --accent-foreground: var(--color-primary-800);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: var(--color-gray-200);
+  --input: var(--color-gray-200);
+  --ring: var(--color-primary-500);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: var(--color-gray-50);
+  --sidebar-foreground: var(--color-gray-950);
+  --sidebar-primary: var(--color-primary-600);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: var(--color-primary-50);
+  --sidebar-accent-foreground: var(--color-primary-800);
+  --sidebar-border: var(--color-gray-200);
+  --sidebar-ring: var(--color-primary-500);
+}
+
+.dark {
+  --background: var(--color-gray-950);
+  --foreground: oklch(0.985 0 0);
+  --card: var(--color-gray-900);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: var(--color-gray-900);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: var(--color-primary-400);
+  --primary-foreground: var(--color-gray-950);
+  --secondary: var(--color-gray-800);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: var(--color-gray-800);
+  --muted-foreground: var(--color-gray-400);
+  --accent: var(--color-primary-950);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--color-primary-400);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: var(--color-gray-900);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--color-primary-400);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: var(--color-gray-800);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: var(--color-primary-400);
+}

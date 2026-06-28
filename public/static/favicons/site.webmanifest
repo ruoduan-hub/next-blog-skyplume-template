@@ -1,0 +1,14 @@
+{
+  "name": "Skyplume Blog",
+  "short_name": "Skyplume",
+  "icons": [
+    {
+      "src": "/static/favicons/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#111827",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

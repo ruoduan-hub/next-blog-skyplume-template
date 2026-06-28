@@ -1,0 +1,9 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F7F9FB"/>
+  <rect x="80" y="76" width="1040" height="478" rx="28" fill="white" stroke="#DDE5EE" stroke-width="2"/>
+  <path d="M170 338C170 256.262 236.262 190 318 190C386.448 190 444.063 236.479 460.82 299.737C490.483 308.942 513 336.46 513 370.25C513 411.257 479.757 444.5 438.75 444.5H225.75C174.929 444.5 133.5 403.071 133.5 352.25C133.5 303.445 171.494 263.519 219.592 260.394" stroke="#1F2937" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M345 116C320 145 307.5 172 307.5 197C307.5 230.137 334.363 257 367.5 257C392.5 257 419.5 244.5 448.5 219.5C423.5 219.5 403.333 211.833 388 196.5C372.667 181.167 365 161 365 136C358.667 129.667 352 123 345 116Z" fill="#1F2937"/>
+  <text x="590" y="275" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="74" font-weight="700">Skyplume Blog</text>
+  <text x="594" y="344" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="30">A clean Next.js blog template for MDX publishing.</text>
+  <text x="594" y="414" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="24">Next.js · Contentlayer · Tailwind CSS · RSS · Search</text>
+</svg>

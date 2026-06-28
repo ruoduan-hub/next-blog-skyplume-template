@@ -1,0 +1,138 @@
+---
+title: Term Proxy — 告别手改 shell profile，用 Tauri 2 打造跨平台终端代理管理工具
+date: '2026-06-28'
+tags:
+  - 开源
+  - Tauri
+  - Rust
+  - React
+categories:
+  - 开源
+draft: false
+summary: >-
+  屏幕右下角一个安静的小托盘，让你从此告别手改 .zshrc 切换代理的日子。基于 Tauri 2 + React 19 构建，支持 macOS、Windows、Linux，MIT 开源。
+authors:
+  - default
+---
+
+## 你也有这个烦恼吗？
+
+> `vim ~/.zshrc` → 改代理 → `source` → 用完再改回去 → 久而久之，shell profile 里堆满注释掉的 `export`，哪天哪个生效都不知道。
+
+这不是什么高深的技术问题，但每天发生，每天烦。
+
+公司 VPN 一个代理，本地调试一个代理，Claude Code / Git / brew 偶尔也要走代理。每切换一次就要手动改配置，忘了切回来就是一通 `connect ECONNREFUSED`。
+
+**Term Proxy 就是为这件事做的。**
+
+---
+
+## 它能干什么
+
+一句话：**把终端代理的增删改查变成桌面操作，自动管理背后的 shell 脚本。**
+
+![Term Proxy 应用截图](/static/blog/term-proxy/screenshots.png)
+
+以前你是这样切代理的：
+
+```bash
+export http_proxy=http://127.0.0.1:1087
+export https_proxy=http://127.0.0.1:1087
+# 用完还得记得注释掉，不然下次 terminal 启动全走代理
+```
+
+有了 Term Proxy，你只需要在 UI 里点一下。它会自动把当前选中的代理写入托管脚本，新终端启动时自动加载。
+
+### 功能清单
+
+- 管理 `http_proxy`、`https_proxy`、`ALL_PROXY` 三种代理
+- 每种代理类型保存多个配置，同一时间只启用一个
+- 全局 `no_proxy` 白名单
+- 一键复制代理 URL
+- 浅色 / 深色 / 跟随系统主题
+- 中、英、日、繁体中文四语支持
+- 开机自启（Tauri autostart）
+
+> 注意：当前版本只管理终端环境变量，不修改系统网络代理设置。
+
+---
+
+## 最用心的地方 — Shell 集成
+
+市面上有些工具直接在 `.zshrc` 里反复追加 `export`，时间一长你的 profile 被写得乱七八糟，根本分不清哪行是谁加的。
+
+Term Proxy 的办法是 **"少侵入、可解释、可回滚"**。
+
+它在你的 profile 里只加一小段**受控加载块**，真正的代理内容全部由 Term Proxy 管理在独立目录：
+
+```text
+~/.term-proxy/
+├── proxy.sh      # macOS / Linux
+└── proxy.ps1     # Windows PowerShell
+```
+
+应用切换代理时，只重写这个目录下的文件，**不会再往你的 profile 里堆任何东西**。
+
+> 你的 profile 你做主。Term Proxy 只是安静地帮你在新终端里加载当前代理。
+
+---
+
+## 技术选型：为什么是 Tauri 2 而不是 Electron
+
+做桌面应用，第一个选择就是 Electron 还是 Tauri。这次选了 Tauri 2，理由简单直接：
+
+| 维度     | Tauri 2             | Electron                |
+| -------- | ------------------- | ----------------------- |
+| 包体积   | ~5MB                | ~150MB（塞了 Chromium） |
+| 后端语言 | Rust                | Node.js                 |
+| 安全性   | 细粒度权限模型      | 完整 Node 权限          |
+| 跨平台   | macOS / Win / Linux | 同                      |
+
+实际开发体验比想象中好。`create-tauri-app` 脚手架开箱即用，Rust 侧代码量不大（主要做文件读写和 shell 检测），前端还是用 React + TypeScript + Vite，开发体验和纯前端项目差不多。
+
+完整技术栈：
+
+| 层级     | 选型                     |
+| -------- | ------------------------ |
+| 桌面框架 | Tauri 2（Rust）          |
+| 前端框架 | React 19                 |
+| 语言     | TypeScript               |
+| 构建     | Vite                     |
+| 样式     | Tailwind CSS + shadcn/ui |
+| 国际化   | i18next / react-i18next  |
+| 通知     | Sonner                   |
+
+---
+
+## 踩过的坑
+
+### macOS 代码签名
+
+macOS 构建目前没有做代码签名。首次启动会被 Gatekeeper 拦一道，右键打开 — 或手动执行：
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/Term Proxy.app"
+```
+
+后续版本会考虑加上签名，毕竟用户对大红色"无法验证"的弹窗天然不放心。
+
+### Tauri 的 Rust-Frontend 通信
+
+Tauri 2 通过 JSON bridge 让 Rust 和前端通信。这个项目通信量不大，主要是读写文件和检测 shell 类型，Rust 侧逻辑很薄。复杂度反而在前端 — 多个代理类型的状态管理、shell 集成的 UI 引导、多语言切换等。
+
+### CI/CD
+
+GitHub Actions 构建三端安装包，推送 tag 自动触发，生成的 Release 默认草稿。省去了手动在三个系统上折腾的麻烦。
+
+---
+
+## 下载
+
+- [GitHub 仓库](https://github.com/your-username/term-proxy)
+- [GitHub Releases](https://github.com/your-username/term-proxy/releases/latest)
+
+MIT 协议，欢迎 PR & Issue。
+
+---
+
+> 一个好工具的价值不在它做了多少事，而在它把一件小事做得多干净。Term Proxy 只做一件事 — 让你忘记手动管理终端代理这回事。

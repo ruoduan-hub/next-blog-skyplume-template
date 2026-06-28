@@ -1,0 +1,61 @@
+/* ── Page Transition ── */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: page-enter 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+/* ── Staggered item reveal ── */
+@keyframes item-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-item-reveal {
+  opacity: 0;
+  animation: item-reveal 0.35s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* ── Hero staggered reveal ── */
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-reveal {
+  opacity: 0;
+  animation: hero-reveal 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* ── Scroll reveal ── */
+@keyframes scroll-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
