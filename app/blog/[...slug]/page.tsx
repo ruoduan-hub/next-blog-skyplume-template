@@ -3,8 +3,8 @@ import 'katex/dist/katex.css'
 
 import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer'
+import { MDXLayoutRenderer } from '@/lib/mdx/mdx-layout-renderer'
+import { sortPosts, coreContent, allCoreContent } from '@/lib/content/core.mjs'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
 import PostSimple from '@/layouts/PostSimple'
@@ -38,7 +38,9 @@ export async function generateMetadata(props: {
 
   const publishedAt = new Date(post.date).toISOString()
   const modifiedAt = new Date(post.lastmod || post.date).toISOString()
-  const authors = authorDetails.map((author) => author.name)
+  const authors = authorDetails
+    .map((author) => author.name)
+    .filter((author): author is string => Boolean(author))
   let imageList = [siteMetadata.socialBanner]
   if (post.images) {
     imageList = typeof post.images === 'string' ? [post.images] : post.images

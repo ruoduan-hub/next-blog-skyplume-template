@@ -1,4 +1,4 @@
-import { NewsletterAPI } from 'pliny/newsletter'
+import { NewsletterAPI } from '@/lib/newsletter/api'
 import siteMetadata from '@/data/siteMetadata'
 
 export const dynamic = 'force-static'

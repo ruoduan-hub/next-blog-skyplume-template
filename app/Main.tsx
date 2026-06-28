@@ -1,6 +1,6 @@
 import type { Blog } from 'contentlayer/generated'
-import type { CoreContent } from 'pliny/utils/contentlayer'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
+import type { CoreContent } from '@/lib/content/types'
+import NewsletterForm from '@/components/newsletter/NewsletterForm'
 import Link from '@/components/Link'
 import { LabHero } from '@/components/home/LabHero'
 import { PostFeed } from '@/components/home/PostFeed'

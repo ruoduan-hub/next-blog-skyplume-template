@@ -1,8 +1,8 @@
 'use client'
 
 import type { Blog } from 'contentlayer/generated'
-import { formatDate } from 'pliny/utils/formatDate'
-import type { CoreContent } from 'pliny/utils/contentlayer'
+import { formatDate } from '@/lib/content/format-date.mjs'
+import type { CoreContent } from '@/lib/content/types'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'

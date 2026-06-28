@@ -1,4 +1,4 @@
-import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
+import { sortPosts, allCoreContent } from '@/lib/content/core.mjs'
 import { allBlogs } from 'contentlayer/generated'
 import Main from './Main'
 

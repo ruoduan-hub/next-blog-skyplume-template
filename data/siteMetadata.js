@@ -1,4 +1,3 @@
-/** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Skyplume Blog',
   author: 'Chad',

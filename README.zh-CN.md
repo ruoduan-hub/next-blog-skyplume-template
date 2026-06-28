@@ -26,7 +26,7 @@ Skyplume 是一个开源博客模板，源于 [Ruoduan](https://www.0x1ai.com/) 
 - 基于 Next.js 15 App Router、React 19、TypeScript、Tailwind CSS 4 和 Contentlayer 构建
 - MDX 优先的写作流程，支持 front matter、阅读时间、目录、代码高亮、数学公式、引用、提示块、图片、iframe 和自定义组件
 - 内置 SEO 元数据、Open Graph 卡片、Twitter 卡片、文章 JSON-LD、canonical URL、sitemap、robots 和 RSS
-- 构建时生成本地搜索索引，基于 `pliny`
+- 构建时通过项目内工具生成本地搜索索引
 - 支持标签、分页、作者信息、项目页、关于页和可选 Giscus 评论
 - 支持跟随系统的暗色模式
 - 细节动画：路由过渡、首页渐入、滚动显现、文章列表显现、悬停状态和顶部进度条
@@ -99,7 +99,7 @@ Skyplume 提供的是实用的 SEO 基础，而不是事后补上的几个 meta 
 - Tailwind CSS 4
 - Contentlayer 2
 - MDX
-- Pliny utilities
+- Local blog utilities
 - Giscus comments
 - Yarn
 
