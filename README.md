@@ -1,107 +1,98 @@
-# Skyplume Blog Template
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="public/static/images/logo-dark.svg">
+    <img alt="Skyplume" src="public/static/images/skyplume-card.svg" width="480">
+  </picture>
+</p>
 
-> A refined, content-first Next.js blog template for personal publishing, engineering notes, project journals, and long-form MDX writing.
+<p align="center">
+  A refined, content-first Next.js blog template for personal publishing,<br/>engineering notes, project journals, and long-form MDX writing.
+</p>
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog)
-[![GitHub stars](https://img.shields.io/github/stars/ruoduan-hub/next-blog-skyplume-template?style=social)](https://github.com/ruoduan-hub/next-blog-skyplume-template/stargazers)
-[![License: MIT](https://img.shields.io/badge/license-MIT-black.svg)](./LICENSE)
+<p align="center">
+  <a href="https://github.com/ruoduan-hub/next-blog-skyplume-template/stargazers">
+    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ruoduan-hub/next-blog-skyplume-template?style=flat&color=%2317897e">
+  </a>
+  <a href="./LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-17897e?style=flat">
+  </a>
+  <a href="https://github.com/ruoduan-hub/next-blog-skyplume-template">
+    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/ruoduan-hub/next-blog-skyplume-template?color=17897e&style=flat">
+  </a>
+  <br/>
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js">
+  <img alt="React" src="https://img.shields.io/badge/React-19-087ea4?style=flat&logo=react">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.7-3178c6?style=flat&logo=typescript">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=flat&logo=tailwindcss">
+  <img alt="Contentlayer" src="https://img.shields.io/badge/Contentlayer-2-000?style=flat">
+  <img alt="MDX" src="https://img.shields.io/badge/MDX-1b1f24?style=flat&logo=mdx">
+  <a href="https://www.0x1ai.com/">
+    <img alt="Production" src="https://img.shields.io/badge/production-0x1ai.com-17897e?style=flat">
+  </a>
+</p>
 
-![Skyplume Blog brand card with the project logo and core template stack](public/static/images/skyplume-card.svg)
+<p align="center">
+  <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog">
+    <img src="https://vercel.com/button" alt="Deploy with Vercel">
+  </a>
+  <a href="https://github.com/ruoduan-hub/next-blog-skyplume-template/generate">
+    <img alt="Use this template" src="https://img.shields.io/badge/Use_this_template-238636?style=flat&logo=github">
+  </a>
+</p>
 
-[简体中文](./README.zh-CN.md)
+<p align="center">
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="#highlights">Highlights</a> ·
+  <a href="#configure-your-site">Configure</a> ·
+  <a href="#write-posts">Write</a> ·
+  <a href="#deploy-to-vercel">Deploy</a> ·
+  <a href="./README.zh-CN.md">简体中文</a>
+</p>
 
-Skyplume is an open-source blog template extracted from [Ruoduan](https://www.0x1ai.com/)'s personal blog at [0x1ai.com](https://www.0x1ai.com/). It keeps the parts that matter for a serious personal site: fast pages, clean typography, strong SEO defaults, MDX authoring, RSS, sitemap, local search, tags, dark mode, animated details, and an architecture that is easy to customize.
+---
 
 ![Skyplume Blog homepage screenshot showing the clean navigation, hero section, post feed, and content-first layout](intro/demo-blog.png)
 
-## Links
+---
 
-- Production reference: [0x1ai.com](https://www.0x1ai.com/)
-- GitHub repository: [ruoduan-hub/next-blog-skyplume-template](https://github.com/ruoduan-hub/next-blog-skyplume-template)
-- One-click deploy: [Deploy Skyplume to Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog)
-- Use as a GitHub template: [Generate a new repository](https://github.com/ruoduan-hub/next-blog-skyplume-template/generate)
+## Why Skyplume
+
+Skyplume is extracted from [Ruoduan](https://www.0x1ai.com/)'s personal blog at [0x1ai.com](https://www.0x1ai.com/) — a production site written, maintained, and tuned over years of real-world use. It keeps what matters for serious personal publishing:
+
+- **Writing experience.** MDX-first with front matter, reading time, table of contents, math, citations, code highlighting, and custom components.
+- **Search visibility.** Complete SEO stack — metadata, Open Graph, Twitter cards, JSON-LD, sitemap, robots.txt, RSS.
+- **Reading comfort.** Restrained typography, quiet color palette, dark mode, fast page transitions.
+- **Developer ownership.** Plain data files and small React components. No CMS lock-in. No hidden configuration layers.
+
+---
 
 ## Highlights
 
-- Built with Next.js 15 App Router, React 19, TypeScript, Tailwind CSS 4, and Contentlayer
-- MDX-first writing flow with front matter, reading time, table of contents, code highlighting, math, citations, alerts, images, iframes, and custom components
-- SEO-ready metadata, Open Graph cards, Twitter cards, JSON-LD for posts, canonical URL support, sitemap, robots, and RSS feed
-- Build-time local search index generated by local project utilities
-- Tags, pagination, author profiles, projects page, about page, and optional Giscus comments
-- Dark mode with system preference support
-- Subtle motion: route transitions, hero reveal, scroll reveal, feed item reveal, hover states, and a top progress bar
-- Security-conscious Next.js headers, long-term static asset caching, and static export support
-- Tuned for Lighthouse triple 100 scores on the baseline template: Performance, Best Practices, and SEO
-
-## Design Philosophy
-
-Skyplume is designed for reading before decoration. The interface uses restrained spacing, sharp typography, quiet borders, and focused article layouts so the writing stays in front. Motion is intentionally short and lightweight: it gives navigation and lists a sense of polish without turning the blog into an animation demo.
-
-The template is also meant to be owned. Most customization starts in plain data files, MDX files, and small React components instead of a large CMS or hidden configuration layer.
-
-## Theme Color
-
-Skyplume uses a Mineral Teal palette: a low-chroma, lab-grade teal paired with teal-tinted neutrals. Body text, lists, borders, and content surfaces stay in quiet gray scales so long-form reading remains stable. The primary color is reserved for links, focus states, the progress bar, tags, and important interactive states.
-
-The color system follows three principles:
-
-- Reading first: gray scales carry the article, lists, and metadata without visual noise.
-- Laboratory character: Mineral Teal appears like an instrument indicator, giving the site a memorable technical identity.
-- Dark-mode stability: deep teal-gray backgrounds and lighter primary accents keep hover states, links, and code details clear without becoming harsh.
-
-## Feature Overview
-
-| Area              | What is included                                                                                                                           |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Publishing        | MDX posts from `data/blog`, drafts, summaries, images, categories, tags, authors, reading time, table of contents                          |
-| Content rendering | GitHub-flavored Markdown, math via KaTeX, citations, code titles, syntax highlighting, heading anchors, custom images and iframes          |
-| Navigation        | Home feed, blog index, pagination, tag pages, projects page, about page, previous/next post links                                          |
-| SEO               | App Router metadata, per-page metadata helper, Open Graph, Twitter cards, JSON-LD `BlogPosting`, canonical URL field, sitemap, robots, RSS |
-| Discovery         | Build-time `search.json`, RSS feed, tag counts, structured archive pages                                                                   |
-| UX                | Responsive layout, dark mode, local search, comments, scroll-to-top/comment shortcut, progress bar                                         |
-| Performance       | Static generation, Contentlayer build output, optimized font loading, cache headers for static assets, optional static export              |
-| Security          | CSP, referrer policy, frame protection, content-type protection, HSTS, permissions policy                                                  |
-
-## SEO and Lighthouse
-
-Skyplume ships with practical SEO foundations instead of afterthought meta tags:
-
-- Site-wide metadata in `app/layout.tsx`
-- Page metadata through `app/seo.tsx`
-- Article metadata in `app/blog/[...slug]/page.tsx`
-- JSON-LD `BlogPosting` data generated from MDX front matter
-- `sitemap.xml` from static routes and published posts
-- `robots.txt` with sitemap discovery
-- `feed.xml` generated after build
-- Open Graph and Twitter image defaults through `data/siteMetadata.js`
-- Clean article summaries for cards, feeds, and search snippets
-
-The baseline template has been tuned to reach Lighthouse 100/100/100 for Performance, Best Practices, and SEO. Your final scores still depend on deployed content, third-party scripts, images, analytics, comments, and hosting configuration, so rerun Lighthouse after customization.
+| | |
+| --- | --- |
+| **Framework** | Next.js 15 App Router, React 19, TypeScript, Tailwind CSS 4, Contentlayer 2 |
+| **Authoring** | MDX, KaTeX math, citations, code titles + highlighting, heading anchors, GitHub alerts |
+| **SEO** | Open Graph, Twitter cards, JSON-LD `BlogPosting`, canonical URLs, sitemap, robots.txt, RSS |
+| **Discovery** | Build-time local search index, tag pages, structured archives, RSS feed |
+| **Reading** | Dark mode, responsive layout, reading time, table of contents, previous/next navigation |
+| **Motion** | Route transitions, staggered hero, scroll reveal, feed animations, progress bar |
+| **Performance** | Static generation, optimized font loading, long-term asset caching, static export support |
+| **Security** | CSP, referrer policy, HSTS, frame protection, content-type headers |
+| **Lighthouse** | Baseline template tuned to **100 Performance / 100 Best Practices / 100 SEO** |
 
 ![Lighthouse scores showing 100 for Performance, Best Practices, and SEO](intro/lighthouse.png)
 
-## Animation Details
+---
 
-The motion system is intentionally small:
+## Design Principles
 
-- `PageTransition` gives route changes a short fade-and-lift transition
-- `ProgressBar` provides lightweight navigation feedback
-- `LabHero` uses staggered reveal for the first screen
-- `PostFeed` reveals posts as they enter the viewport
-- `ScrollReveal` is available for page sections
-- `css/animations.css` keeps keyframes centralized and easy to adjust
+Skyplume is designed for **reading before decoration**. The interface uses restrained spacing, sharp typography, and quiet borders so writing stays front and center. Motion is intentionally short and lightweight — polish without distraction.
 
-## Tech Stack
+**Mineral Teal palette.** A low-chroma, lab-grade teal paired with teal-tinted neutrals. Grays carry body text and metadata without visual noise. The primary color is reserved for links, focus states, and interactive cues. In dark mode, deep teal-gray backgrounds keep long-form reading stable.
 
-- Next.js 15 App Router
-- React 19
-- TypeScript
-- Tailwind CSS 4
-- Contentlayer 2
-- MDX
-- Local blog utilities
-- Giscus comments
-- Yarn
+The template is meant to be **owned**, not just used. Most customization starts in plain data files and MDX — not a hidden admin panel.
+
+---
 
 ## Quick Start
 
@@ -110,31 +101,51 @@ yarn install
 yarn dev
 ```
 
-Open <http://localhost:3000>.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Deploy to Vercel
+### Available Scripts
 
-The fastest path is the one-click deploy button at the top of this README. It clones this repository into your Git provider, creates a Vercel project, and keeps the app deployable with the default configuration.
+```bash
+yarn dev       # Start development server
+yarn build     # Production build + RSS generation
+yarn serve     # Serve production build locally
+yarn analyze   # Bundle analyzer
+yarn lint      # Lint app, components, layouts, and scripts
+```
 
-Comments are optional. The template boots without newsletter, analytics, or comment credentials. To enable Giscus comments, copy `.env.example` to `.env.local` and fill in the required values.
+### Static Export
+
+```bash
+EXPORT=true UNOPTIMIZED=true yarn build
+```
+
+Set `BASE_PATH` when deploying under a subpath.
+
+---
 
 ## Configure Your Site
 
-Edit these files first:
+Edit these files first — everything is self-documenting:
 
-- `data/siteMetadata.js`: site title, URL, author, email, GitHub, comments, search, and SEO defaults
-- `data/profile.ts`: about page profile, links, skills, and template guide content
-- `data/authors/default.mdx`: default author metadata and biography
-- `data/headerNavLinks.ts`: top navigation
-- `data/projectsData.ts`: projects page content
-- `public/static/images/skyplume-card.svg`: social sharing image
-- `public/static/favicons/favicon.svg`: favicon
+| File | Purpose |
+| --- | --- |
+| `data/siteMetadata.js` | Title, URL, author, SEO defaults, search, comments |
+| `data/profile.ts` | About page: bio, links, skills |
+| `data/authors/default.mdx` | Default author metadata |
+| `data/headerNavLinks.ts` | Top navigation links |
+| `data/projectsData.ts` | Projects page content |
+| `public/static/images/skyplume-card.svg` | Social sharing card |
+| `public/static/favicons/favicon.svg` | Browser favicon |
 
-For comments, copy `.env.example` to `.env.local` and fill the Giscus values. To disable comments, set `comments.provider` to an empty string in `data/siteMetadata.js`.
+### Comments (Giscus)
+
+Copy `.env.example` to `.env.local` and fill in your Giscus values. To disable comments entirely, set `comments.provider` to `""` in `data/siteMetadata.js`.
+
+---
 
 ## Write Posts
 
-Create MDX files in `data/blog`.
+Create MDX files in `data/blog`:
 
 ```mdx
 ---
@@ -154,71 +165,52 @@ authors:
 Write your post in MDX.
 ```
 
-Place post images under `public/static/blog/<post-slug>` and reference them like this:
+Place images under `public/static/blog/<post-slug>` and reference them:
 
 ```mdx
 ![Screenshot](/static/blog/my-first-post/screenshot.png)
 ```
 
-This template includes one example post: `data/blog/term-proxy.mdx`.
+A sample post is included at `data/blog/term-proxy.mdx`.
 
-## Available Scripts
+---
 
-```bash
-yarn dev       # Start local development
-yarn build     # Build Next.js and generate RSS output
-yarn serve     # Serve the production build
-yarn analyze   # Run the bundle analyzer
-yarn lint      # Lint app, components, layouts, and scripts
-```
+## Deploy to Vercel
 
-## Static Export
+Click the deploy button above. The template boots without newsletter, analytics, or comment credentials — everything is optional.
 
-Skyplume can be exported as static files:
-
-```bash
-EXPORT=true UNOPTIMIZED=true yarn build
-```
-
-Use `BASE_PATH` if deploying under a subpath.
+---
 
 ## Project Structure
 
-```text
+```
 app/                 App Router pages, metadata, sitemap, robots
 components/          Shared UI, MDX components, search, theme, motion
-data/                Site metadata, authors, profile, projects, posts
-layouts/             Blog post and list layouts
-public/static/       Images, favicons, and post assets
-scripts/             RSS and post-build scripts
+data/                Site metadata, authors, profile, projects, blog posts
+layouts/             Blog post and list page layouts
+public/static/       Images, favicons, post assets
+scripts/             RSS and post-build utilities
 css/                 Tailwind, syntax highlighting, animations
 ```
 
-## Suggested GitHub Topics
+---
 
-If you fork or publish a derivative template, these topics help people discover it:
+## Recommend to Vercel
 
-```text
-nextjs nextjs-template blog-template mdx contentlayer tailwindcss typescript vercel static-site personal-website
-```
+Skyplume fits the Vercel template community:
 
-## Recommend Skyplume to Vercel
-
-Skyplume is ready to be shared with the Vercel community as a polished blog template:
-
-- Category fit: Blog, Next.js, Tailwind CSS, MDX, static content
-- Repository: <https://github.com/ruoduan-hub/next-blog-skyplume-template>
-- Production reference: <https://www.0x1ai.com/>
-- One-click deploy: <https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruoduan-hub%2Fnext-blog-skyplume-template&project-name=skyplume-blog&repository-name=skyplume-blog>
-
-Suggested short pitch:
+- **Category:** Blog, Next.js, Tailwind CSS, MDX
+- **Repository:** [ruoduan-hub/next-blog-skyplume-template](https://github.com/ruoduan-hub/next-blog-skyplume-template)
+- **Production reference:** [0x1ai.com](https://www.0x1ai.com/)
 
 > Skyplume is a refined Next.js 15 blog template extracted from a production personal site. It ships with MDX publishing, Contentlayer, Tailwind CSS 4, local search, RSS, sitemap, JSON-LD, Open Graph defaults, dark mode, Giscus comments, static export support, security headers, and a baseline Lighthouse 100/100/100 setup for Performance, Best Practices, and SEO.
 
+---
+
 ## Credits
 
-This template is derived from the blog system used by [Ruoduan](https://www.0x1ai.com/) on [0x1ai.com](https://www.0x1ai.com/) and is packaged as a reusable open-source starting point for clean personal publishing.
+Derived from the blog system powering [0x1ai.com](https://www.0x1ai.com/), built and maintained by [Ruoduan](https://www.0x1ai.com/).
 
 ## License
 
-MIT
+MIT — use, modify, and ship it.
