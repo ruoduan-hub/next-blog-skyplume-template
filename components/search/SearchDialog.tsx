@@ -1,7 +1,5 @@
 'use client'
 
-import { filterSearchDocuments } from '@/lib/search/core.mjs'
-import { formatDate } from '@/lib/content/format-date.mjs'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -12,18 +10,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { formatDate } from '@/lib/content/format-date.mjs'
+import { filterSearchDocuments } from '@/lib/search/core.mjs'
 import { AlertCircle, ArrowRight, FileText, Loader2, Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 
 export type SearchConfig = {
   provider?: string
@@ -40,20 +31,10 @@ type SearchDocument = {
   tags?: string[]
 }
 
-type SearchContextValue = {
-  openSearch: () => void
-}
-
-const SearchContext = createContext<SearchContextValue | null>(null)
-
-export function useSearch() {
-  const context = useContext(SearchContext)
-  if (!context) {
-    return {
-      openSearch: () => undefined,
-    }
-  }
-  return context
+type SearchDialogProps = {
+  isOpen: boolean
+  onClose: () => void
+  searchConfig?: SearchConfig
 }
 
 function getSearchUrl(searchDocumentsPath?: string) {
@@ -64,17 +45,10 @@ function getSearchUrl(searchDocumentsPath?: string) {
   return new URL(searchDocumentsPath, window.location.origin).toString()
 }
 
-export function SearchProvider({
-  searchConfig,
-  children,
-}: {
-  searchConfig?: SearchConfig
-  children: ReactNode
-}) {
+export function SearchDialog({ isOpen, onClose, searchConfig }: SearchDialogProps) {
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const requestIdRef = useRef(0)
-  const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [documents, setDocuments] = useState<SearchDocument[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -82,30 +56,6 @@ export function SearchProvider({
   const [error, setError] = useState<string | null>(null)
 
   const searchDocumentsPath = searchConfig?.kbarConfig?.searchDocumentsPath
-
-  const openSearch = useCallback(() => {
-    setIsOpen(true)
-  }, [])
-
-  const closeSearch = useCallback(() => {
-    setIsOpen(false)
-    setQuery('')
-  }, [])
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-        event.preventDefault()
-        openSearch()
-      }
-      if (event.key === 'Escape') {
-        closeSearch()
-      }
-    }
-
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [closeSearch, openSearch])
 
   useEffect(() => {
     if (!isOpen) return
@@ -158,6 +108,11 @@ export function SearchProvider({
     return filterSearchDocuments(documents, query)
   }, [documents, query])
 
+  const closeSearch = () => {
+    onClose()
+    setQuery('')
+  }
+
   const onSelect = (document: SearchDocument) => {
     closeSearch()
     router.push(`/${document.path}`)
@@ -169,114 +124,107 @@ export function SearchProvider({
   const hasSearchConfig = Boolean(searchDocumentsPath)
 
   return (
-    <SearchContext.Provider value={{ openSearch }}>
-      {children}
-      <Dialog
-        open={isOpen}
-        onOpenChange={(open) => {
-          if (open) {
-            openSearch()
-          } else {
-            closeSearch()
-          }
-        }}
-      >
-        <DialogContent className="top-6 grid max-h-[calc(100dvh-3rem)] w-[min(calc(100%-1rem),44rem)] translate-y-0 gap-0 overflow-hidden rounded-xl border-gray-200 bg-white p-0 shadow-[0_16px_48px_rgba(15,23,42,0.16)] sm:top-16 sm:w-[min(calc(100%-2rem),44rem)] dark:border-gray-800 dark:bg-gray-950 dark:shadow-[0_16px_48px_rgba(0,0,0,0.42)]">
-          <DialogHeader className="border-b border-gray-200 px-4 pt-5 pb-4 text-left sm:px-5 dark:border-gray-800">
-            <div className="flex items-center gap-3 pr-8">
-              <span className="bg-primary-50 text-primary-700 ring-primary-100 dark:bg-primary-950 dark:text-primary-300 dark:ring-primary-800 flex size-9 shrink-0 items-center justify-center rounded-lg ring-1">
-                <Search aria-hidden="true" className="size-4" strokeWidth={1.7} />
-              </span>
-              <div className="min-w-0">
-                <DialogTitle className="text-base leading-6 font-semibold text-gray-950 dark:text-gray-50">
-                  Search the archive
-                </DialogTitle>
-                <DialogDescription className="text-sm text-gray-600 dark:text-gray-400">
-                  Find posts by title, path, summary, or tag.
-                </DialogDescription>
-              </div>
-            </div>
-          </DialogHeader>
-
-          <div className="border-b border-gray-200 p-4 sm:p-5 dark:border-gray-800">
-            <label className="sr-only" htmlFor="site-search-input">
-              Search posts
-            </label>
-            <div className="relative">
-              <Search
-                aria-hidden="true"
-                className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-gray-500 dark:text-gray-400"
-                strokeWidth={1.7}
-              />
-              <Input
-                ref={inputRef}
-                id="site-search-input"
-                aria-describedby="site-search-help"
-                className="h-11 rounded-lg border-gray-300 bg-gray-50 pr-3 pl-9 text-base shadow-none placeholder:text-gray-500 focus-visible:bg-white dark:border-gray-800 dark:bg-gray-900/80 dark:placeholder:text-gray-400 dark:focus-visible:bg-gray-950"
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search posts, tags, or notes"
-                type="search"
-                value={query}
-              />
-            </div>
-            <div
-              className="mt-3 flex flex-col gap-2 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between dark:text-gray-400"
-              id="site-search-help"
-            >
-              <span>{resultLabel}</span>
-              <span className="hidden sm:inline">Press Esc to close</span>
-            </div>
-          </div>
-
-          <div className="max-h-[min(60dvh,30rem)] overflow-y-auto p-2" aria-live="polite">
-            {!hasSearchConfig && (
-              <SearchState
-                icon={<AlertCircle aria-hidden="true" className="size-4" />}
-                title="Search is not configured"
-                description="Add a search document path to enable local search."
-              />
-            )}
-
-            {hasSearchConfig && (isLoading || (!hasLoaded && !error)) && <SearchLoadingRows />}
-
-            {hasSearchConfig && error && (
-              <SearchState
-                icon={<AlertCircle aria-hidden="true" className="size-4" />}
-                title="Search index failed to load"
-                description={error}
-              />
-            )}
-
-            {hasSearchConfig && hasLoaded && !isLoading && !error && results.length === 0 && (
-              <SearchState
-                icon={<Search aria-hidden="true" className="size-4" />}
-                title="No posts found"
-                description="Try a broader title, tag, or topic."
-              />
-            )}
-
-            {hasSearchConfig &&
-              hasLoaded &&
-              !isLoading &&
-              !error &&
-              results.map((document) => (
-                <SearchResultButton
-                  document={document}
-                  key={document.path}
-                  onSelect={() => onSelect(document)}
-                />
-              ))}
-          </div>
-
-          <div className="flex items-center justify-between border-t border-gray-200 bg-gray-50 px-4 py-3 text-xs text-gray-500 dark:border-gray-800 dark:bg-gray-900/70 dark:text-gray-400">
-            <span>Local index</span>
-            <span>
-              {documents.length ? `${documents.length} posts indexed` : 'Ready on first open'}
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) closeSearch()
+      }}
+    >
+      <DialogContent className="top-6 grid max-h-[calc(100dvh-3rem)] w-[min(calc(100%-1rem),44rem)] translate-y-0 gap-0 overflow-hidden rounded-xl border-gray-200 bg-white p-0 shadow-[0_16px_48px_rgba(15,23,42,0.16)] sm:top-16 sm:w-[min(calc(100%-2rem),44rem)] dark:border-gray-800 dark:bg-gray-950 dark:shadow-[0_16px_48px_rgba(0,0,0,0.42)]">
+        <DialogHeader className="border-b border-gray-200 px-4 pt-5 pb-4 text-left sm:px-5 dark:border-gray-800">
+          <div className="flex items-center gap-3 pr-8">
+            <span className="bg-primary-50 text-primary-700 ring-primary-100 dark:bg-primary-950 dark:text-primary-300 dark:ring-primary-800 flex size-9 shrink-0 items-center justify-center rounded-lg ring-1">
+              <Search aria-hidden="true" className="size-4" strokeWidth={1.7} />
             </span>
+            <div className="min-w-0">
+              <DialogTitle className="text-base leading-6 font-semibold text-gray-950 dark:text-gray-50">
+                Search the archive
+              </DialogTitle>
+              <DialogDescription className="text-sm text-gray-600 dark:text-gray-400">
+                Find posts by title, path, summary, or tag.
+              </DialogDescription>
+            </div>
           </div>
-        </DialogContent>
-      </Dialog>
-    </SearchContext.Provider>
+        </DialogHeader>
+
+        <div className="border-b border-gray-200 p-4 sm:p-5 dark:border-gray-800">
+          <label className="sr-only" htmlFor="site-search-input">
+            Search posts
+          </label>
+          <div className="relative">
+            <Search
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+              strokeWidth={1.7}
+            />
+            <Input
+              ref={inputRef}
+              id="site-search-input"
+              aria-describedby="site-search-help"
+              className="h-11 rounded-lg border-gray-300 bg-gray-50 pr-3 pl-9 text-base shadow-none placeholder:text-gray-500 focus-visible:bg-white dark:border-gray-800 dark:bg-gray-900/80 dark:placeholder:text-gray-400 dark:focus-visible:bg-gray-950"
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search posts, tags, or notes"
+              type="search"
+              value={query}
+            />
+          </div>
+          <div
+            className="mt-3 flex flex-col gap-2 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between dark:text-gray-400"
+            id="site-search-help"
+          >
+            <span>{resultLabel}</span>
+            <span className="hidden sm:inline">Press Esc to close</span>
+          </div>
+        </div>
+
+        <div className="max-h-[min(60dvh,30rem)] overflow-y-auto p-2" aria-live="polite">
+          {!hasSearchConfig && (
+            <SearchState
+              icon={<AlertCircle aria-hidden="true" className="size-4" />}
+              title="Search is not configured"
+              description="Add a search document path to enable local search."
+            />
+          )}
+
+          {hasSearchConfig && (isLoading || (!hasLoaded && !error)) && <SearchLoadingRows />}
+
+          {hasSearchConfig && error && (
+            <SearchState
+              icon={<AlertCircle aria-hidden="true" className="size-4" />}
+              title="Search index failed to load"
+              description={error}
+            />
+          )}
+
+          {hasSearchConfig && hasLoaded && !isLoading && !error && results.length === 0 && (
+            <SearchState
+              icon={<Search aria-hidden="true" className="size-4" />}
+              title="No posts found"
+              description="Try a broader title, tag, or topic."
+            />
+          )}
+
+          {hasSearchConfig &&
+            hasLoaded &&
+            !isLoading &&
+            !error &&
+            results.map((document) => (
+              <SearchResultButton
+                document={document}
+                key={document.path}
+                onSelect={() => onSelect(document)}
+              />
+            ))}
+        </div>
+
+        <div className="flex items-center justify-between border-t border-gray-200 bg-gray-50 px-4 py-3 text-xs text-gray-500 dark:border-gray-800 dark:bg-gray-900/70 dark:text-gray-400">
+          <span>Local index</span>
+          <span>
+            {documents.length ? `${documents.length} posts indexed` : 'Ready on first open'}
+          </span>
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }
 

@@ -1,42 +1,22 @@
-'use client'
-
 import type { Blog } from 'contentlayer/generated'
 import { formatDate } from '@/lib/content/format-date.mjs'
 import type { CoreContent } from '@/lib/content/types'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { useEffect, useRef } from 'react'
 
 type PostFeedProps = {
   posts: CoreContent<Blog>[]
 }
 
 function PostFeedItem({ index, post }: { index: number; post: CoreContent<Blog> }) {
-  const ref = useRef<HTMLLIElement>(null)
   const { slug, date, title, summary, tags } = post
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('animate-item-reveal')
-          el.style.animationDelay = `${index * 60}ms`
-          observer.disconnect()
-        }
-      },
-      { rootMargin: '-40px' }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [index])
-
   return (
-    <li ref={ref} className="py-8 opacity-0">
+    <li
+      className="animate-item-reveal py-8 opacity-0"
+      style={{ animationDelay: `${index * 60}ms` }}
+    >
       <article className="grid gap-4 md:grid-cols-[132px_1fr] md:items-start">
         <time
           dateTime={date}

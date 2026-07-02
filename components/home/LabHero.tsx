@@ -1,7 +1,4 @@
-'use client'
-
 import Link from '@/components/Link'
-import { Button } from '@/components/ui/button'
 import { profile } from '@/data/profile'
 
 type LabHeroProps = {
@@ -34,10 +31,18 @@ export function LabHero({ postCount }: LabHeroProps) {
           className="animate-hero-reveal mt-8 flex flex-wrap gap-3"
           style={{ animationDelay: '240ms' }}
         >
-          <Button render={<Link href="/blog" />}>Read posts</Button>
-          <Button variant="outline" render={<Link href="/about" />}>
+          <Link
+            className="bg-primary text-primary-foreground hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-8 shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-3"
+            href="/blog"
+          >
+            Read posts
+          </Link>
+          <Link
+            className="border-border bg-background hover:bg-muted hover:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-8 shrink-0 items-center justify-center rounded-lg border bg-clip-padding px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-3"
+            href="/about"
+          >
             About
-          </Button>
+          </Link>
         </div>
       </div>
       <div

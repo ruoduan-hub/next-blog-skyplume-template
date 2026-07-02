@@ -4,7 +4,8 @@ import 'remark-github-blockquote-alert/alert.css'
 import { Space_Grotesk } from 'next/font/google'
 import { Suspense } from 'react'
 import { Analytics, AnalyticsConfig } from '@/components/analytics/Analytics'
-import { SearchProvider, SearchConfig } from '@/components/search/SearchProvider'
+import { SearchDialogController } from '@/components/search/SearchDialogController'
+import type { SearchConfig } from '@/components/search/SearchDialog'
 import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'
@@ -83,12 +84,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Suspense fallback={null}>
               <ProgressBar />
             </Suspense>
-            <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-              <Header />
-              <main className="mb-auto">
-                <PageTransition>{children}</PageTransition>
-              </main>
-            </SearchProvider>
+            <SearchDialogController searchConfig={siteMetadata.search as SearchConfig} />
+            <Header />
+            <main className="mb-auto">
+              <PageTransition>{children}</PageTransition>
+            </main>
             <Footer />
           </SectionContainer>
         </ThemeProviders>
